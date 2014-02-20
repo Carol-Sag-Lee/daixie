@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% from 'import/tools.html' import flashed_msg, errors,captcha %}
+{% from 'import/tools.html' import error %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="row">
+        <h2 class="headline text-center">加入{{ config['SITE_NAME'] }}, 和全北京的小伙伴一起合寄</h2>
+        <form class="form-horizontal col-md-offset-2" method="post" action="{{ url_for('general.register') }}">
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label class="col-md-3 control-label">邮箱</label>
+                <div class="col-md-5">
+                    {{ form.email(class='form-control', type='email', placeholder='邮箱', required='required') }}
+                    {{ error(form.errors['email']) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">密码</label>
+                <div class="col-md-5">
+                    {{ form.passwd(class='form-control', placeholder="密码") }}
+                    {{ error(form.errors['passwd']) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">确认密码</label>
+                <div class="col-md-5">
+                    {{ form.passwd_confirm(class='form-control', placeholder="确认密码") }}
+                    {{ error(form.errors['passwd_confirm']) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">验证码</label>
+                <div class="col-md-5">
+                    {{ form.captcha(id="input-captcha", class="form-control", required='required', placeholder='输入验证码') }}
+                    <img class="captcha input-small" src="{{ url_for('general.captcha') }}" style="cursor: pointer;border: 1px dashed #ddd;"  title="点击刷新" onclick="refresh_captcha(this)"/>
+                    {{ error(form.errors['captcha']) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-5">
+                    <input class="btn btn-orange" type="submit" value="&nbsp;&nbsp;注册&nbsp;&nbsp;">
+
+                    <p>>已经拥有账号?<a href="{{ url_for('general.login') }}">直接登录</a></p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    function refresh_captcha(self){
+    $(self).attr('src', '/captcha?' + new Date().getTime())
+} 
+</script>
+{% endblock content %}

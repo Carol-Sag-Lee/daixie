@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% from 'import/heji_rule.html' import heji_rule %}
+<div  class="well">
+<h3 class="alert alert-info">请认真阅读以下协议，要使用我们的服务，必须同意此协议。</h3>
+	{{ heji_rule() }}
+	<table>
+		<tr>
+	     <td><a class="btn btn-info" href="{{ url_for('user.user_info') }}" style="width:100px">同意</a></td>
+	     <td><a class="btn btn-info" href="{{ url_for('general.logout') }}" style="width:100px">不同意</a></td>
+	    </tr>
+	</table>
+</div>
+
+{% endblock%}

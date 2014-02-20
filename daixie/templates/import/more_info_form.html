@@ -1,0 +1,112 @@
+{% from 'import/tools.html' import express_status %}
+
+
+{% macro more_info_form(express, address) %}
+  <form class="form-horizontal ">
+              <div class="control-group">
+              <label class="control-label ">快寄编码</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ express.confirmation_code }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">创建时间</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ express.create_time }}</span>
+              </div>
+              </div>
+              
+              <div class="control-group">
+              <label class="control-label">国内收件时间</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ express.fetch_time if express.fetch_time else '尚未收件'}}</span>
+              </div>
+              </div>
+              
+              
+              <div class="control-group">
+              <label class="control-label">快寄状态</label>
+              <div class="controls">
+                  {% if express.update_info %}
+                  {% for info in express.update_info|to_list %}
+                  <p>{{ info }}</p>
+                  {% endfor %}
+                  {% if express.status >= 3%}
+                  <div id="ups_info" style="width:400px;">
+                    <p class="text-warning loading">正在载入UPS信息...</p>
+                  </div>
+                  <p style="display:none" class="ups-official">对以上ups信息有疑问？点击
+                    <a target='_blank' href="http://wwwapps.ups.com/WebTracking/track?loc=zh_CN&trackNums={{ express.ups_code }}&track.x=追踪">官网</a>查询。
+                  </p>
+                  {% endif %}
+                  {% if express.status == 4 %}
+                  <p>北美已收件</p>
+                  {% elif express.status == 5 and express.usps_code != '0' %}
+                  <div id="usps_info">
+                    <p class="text-warning loading">正在载入USPS信息...</p>
+                  </div>
+
+                  <p style="display:none" class="usps-official">对以上usps信息有疑问？点击
+                    <a target='_blank' href="https://tools.usps.com/go/TrackConfirmAction.action?tRef=fullpage&tLc=1&tLabels={{ express.usps_code }}">官网</a>查询。
+                  </p>
+                  {% elif express.status == 5 and express.usps_code == '0' %}
+                  <div>
+                    <p>北美已发件</p>
+                  </div>
+                  {% elif express.status == 6 %}
+                  <p>快寄已投递成功</p>
+                  {% endif %}
+                  {% else %}
+                  <span class="input-xlarge uneditable-input">已创建</span>
+                  {% endif %}
+              </div>
+              </div>
+              
+              
+              <div class="control-group">
+                <label class="control-label ">快寄类型</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ express.product.intro }}</span>
+              </div>
+              </div>
+              
+              
+              <div class="control-group">
+              <label class="control-label ">邮寄地址</label>
+              <div class="controls">
+                  {% if express.address_type == 0 or express.address_type == 2 %}
+                  <p>{{ address.line1 if address.line1 }}</p>
+                  <p>{{ address.line2 if address.line2 }}</p>
+                  <p>{{ address.line3 if address.line3 }}</p>
+                  <p>{{ address.line4 if address.line4 }}</p>
+                  <p>{{ address.line5 if address.line5 }}</p>
+                  <p>{{ address.line6 if address.line6 }}</p>
+                  <p>{{ address.line7 if address.line7 }}</p>
+                  <p>{{ address.line8 if address.line8 }}</p>
+                  <p>{{ address.line9 if address.line9 }}</p>
+                  <p>{{ address.line10 if address.line10 }}</p>
+                  {% else %}
+                  <p>{{ address.full_name if address.full_name }}</p>
+                  <p>{{ address.address_line1 if address.address_line1 }}</p>
+                  <p>{{ address.address_line2 if address.address_line2 }}</p>
+                  <p>
+                    {{ address.city if address.city }},&nbsp;
+                    {{ address.state if address.state }},&nbsp;
+                    {{ address.zip_code if address.zip_code }}
+                  </p>
+                  {% endif %}
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">附加信息</label>
+                <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ express.extra_info if express.extra_info else '无' }}
+                  </span>
+                </div>
+              </div>
+              
+   </form>   
+{% endmacro%}

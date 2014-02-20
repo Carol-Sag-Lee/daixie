@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+auth
+{% endblock title %}
+
+{% block content %}
+
+<p>已发送验证邮件到您的邮箱：{{ email }},请登录到您的邮箱进行验证。</p> <br>
+<p>若未收到邮件，请重新发送验证邮件。</p>
+<a href="{{ url_for('general.send_activate_email', id=id, email=email) }}">点击重新发送</a>
+
+{% endblock content %}

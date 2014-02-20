@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% from 'import/tools.html' import flashed_msg, errors %}
+
+{% block title %}
+{{ current_user.nickname }}
+{% endblock title %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>{{ current_user.nickname }}的账号</h2>
+</div>
+
+<form class="form-horizontal" id="profile-form" method="post" action="{{ url_for('user.profile') }}">
+    {{ form.hidden_tag() }}    
+    <div class="form-group">
+        {{ form.email.label(class="col-md-2 control-label") }}
+        <div class="col-md-5">
+            {{ form.email(class='form-control') }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.nickname.label(class="col-md-2 control-label") }}
+        <div class="col-md-5">
+            {{ form.nickname(class='form-control') }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.sex.label(class="col-md-2 control-label") }}
+        <div class="col-md-5">
+            {{ form.sex(class='form-control') }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.description.label(class="col-md-2 control-label") }}
+        <div class="col-md-5">
+            {{ form.description(class='form-control', style="height:150px;resize:none;") }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            <input class="btn btn-orange" type="submit" value="提交"/>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

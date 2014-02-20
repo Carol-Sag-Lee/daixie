@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% from 'import/tools.html' import flashed_msg, errors %}
+
+{% block title %}
+登录 - {{ config['SITE_NAME'] }}
+{% endblock title %}
+
+{% block content %}
+
+{{ flashed_msg() }}
+<div class="row">
+    
+    <div class="page-header">
+        <h2>登录{{ config['SITE_NAME'] }}</h2>
+    </div>
+
+    <form class="form-horizontal" id="register-form" method="post" action="{{ url_for('general.login') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.email.label(class="col-md-2 control-label") }}
+            <div class="col-md-5">
+                {{ form.email(class='form-control', type='email', required='required') }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.passwd.label(class="col-md-2 control-label") }}
+            <div class="col-md-5">
+                {{ form.passwd(class='form-control',placeholder="5至20个字符，支持中英文，数字，_和-") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-5 col-md-offset-2">
+                <div class="checkbox">
+                    <label>{{ form.auto() }}下次自动登录</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5 col-md-offset-2">
+                <input class="btn btn-orange" type="submit" value="登录"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>代写</title>
+
+        <meta name="description" content="给大学生提供代写作业的平台">
+        <meta name="keywords" content="大学 作业 美国">
+        <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        {% assets "all_css" %}
+            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+        {% endassets %}
+
+        <!--[if lt IE 9]>
+        <script src="ie/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <header class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('general.index') }}">{{ config['SITE_NAME'] }}<span class="TM">BETA</span></a>
+                </div>
+                <nav class="collapse navbar-collapse" role="navigation">
+                    {% if current_user.is_authenticated() %}
+                    <ul class="nav nav-user navbar-nav navbar-left">
+                        <li><a href="{{ url_for('user.home') }}">首页</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                设置<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('user.profile') }}">账号信息</a></li>
+                                <li><a href="">关联账户设置</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if not current_user.is_authenticated() %}
+                        <li><a href="{{ url_for('general.register') }}">注册</a></li>
+                        <li><a href="{{ url_for('general.login') }}">登录</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('user.home') }}">{{ current_user.nickname if current_user.nickname else current_user.email }}</a></li>
+                        <li><a href="{{ url_for('general.logout') }}">注销</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        {% block ad %}
+        {% endblock ad %}
+
+        {% from 'import/tools.html' import flashed_msg %}
+        <div class="container">
+            <div class="row">
+                {{ flashed_msg() }}
+            </div>
+        </div>
+        
+        {% block wrapper %}
+        <div class="container wrapper">
+            <div class="row">
+        {% block content %}{% endblock content %}
+            </div>
+        </div>
+        {% endblock wrapper %}
+        
+        <hr>
+        <div id="footer">
+            <div class="container">
+                <p class="navbar-text">© 2013 example.com・all rights reserved・京ICP备12026711号·文化部监督电子邮箱:wlwh@vip.sina.com</p>
+            </div>
+        </div>
+
+        {% assets "all_js" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+
+        {% block js %}
+        {# <script> 对特定网页导入工具性js时使用 </script> #}
+        {% endblock js %}
+    </body>
+</html>

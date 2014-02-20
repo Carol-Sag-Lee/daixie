@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% from 'import/tools.html' import flashed_msg %}
+
+{% block title %}
+注册
+{% endblock title %}
+
+{% block content %}
+
+{{ flashed_msg() }}
+<div class="mail">
+    <p><a href="{{ url }}">若浏览器没有跳转，点击此处进入主页</a></p>
+</div>
+
+{% endblock content %}
