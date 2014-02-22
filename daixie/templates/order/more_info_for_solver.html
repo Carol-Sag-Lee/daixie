@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% from 'import/more_info_form_for_solver.html' import more_info_form_for_solver %}
+
+	<div  class="left_side well form-horizontal span8 offset2">
+    <h3 class="alert alert-info">您的订单信息如下</h3>
+	    <div class="span12 info"> 
+	        {{ more_info_form_for_solver(order) }}
+	     </div>
+     </div>
+
+{% endblock %}
+

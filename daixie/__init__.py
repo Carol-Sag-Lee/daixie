@@ -74,6 +74,8 @@ def catch_error(error):
 #
 from daixie.views import general
 from daixie.views import user
+from daixie.views import order
 
 app.register_blueprint(general.mod)
 app.register_blueprint(user.mod)
+app.register_blueprint(order.mod)

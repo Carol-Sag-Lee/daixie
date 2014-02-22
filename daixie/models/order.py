@@ -36,7 +36,7 @@ class Order(db.Model, UserMixin):
 
     
     def __init__(self, user_id, cs_id, solver_id, require_time, expect_time, title, expect_hour, \
-             order_price, description='', supp_info='', extra_item='', extra_money=''):
+             order_price, description=None, supp_info=None, extra_item=None, extra_money=None):
         self.user_id = user_id
         self.cs_id = cs_id
         self.solver_id = solver_id
@@ -52,7 +52,7 @@ class Order(db.Model, UserMixin):
         self.actual_hour = None
         self.extra_item = extra_item
         self.extra_money = extra_money
-        order_price = order_price
+        self.order_price = self.order_price
 
 
     def __repr__(self):

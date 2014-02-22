@@ -27,6 +27,17 @@
 </ul>
 {% endmacro %}
 
+{% macro order_status(order) %}
+    {% if order.status == 0 %}
+       未付款
+       {% elif order.status == 1%}
+       已付款
+       {% elif order.status == 2%}
+       解答中
+       {% elif order.status == 3 %}
+       已解决
+    {% endif %}
+{% endmacro %}
 
 {% macro captcha(form) %}
 <img class="captcha input-small" style="cursor: pointer;border: 1px dashed #ddd;"  title="点击刷新" onclick="refresh_captcha(this)"/>

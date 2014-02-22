@@ -26,6 +26,7 @@
                     {% if current_user.is_authenticated() %}
                     <ul class="nav nav-user navbar-nav navbar-left">
                         <li><a href="{{ url_for('user.home') }}">首页</a></li>
+                        <li><a href="{{ url_for('order.my_list') }}">查看订单</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 设置<span class="caret"></span>

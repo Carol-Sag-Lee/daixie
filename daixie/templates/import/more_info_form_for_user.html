@@ -1,0 +1,127 @@
+{% from 'import/tools.html' import order_status %}
+
+
+{% macro more_info_form_for_user(order) %}
+  <form class="form-horizontal ">
+              <div class="control-group">
+              <label class="control-label ">订单号</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.id }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+              <label class="control-label ">标题</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.title }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+              <label class="control-label ">创建时间</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.create_time }}</span>
+              </div>
+              </div>
+              
+              <div class="control-group">
+              <label class="control-label">要求时间</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.require_time }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+              <label class="control-label">预计时间</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.expect_time }}</span>
+              </div>
+              </div>
+              
+              
+              <div class="control-group">
+              <label class="control-label">订单状态</label>
+              <div class="controls">
+                  {% if order.status == 0 %}
+                  <span class="input-xlarge uneditable-input">已创建</span>
+                  {% elif order.status == 1 %}
+                  <span class="input-xlarge uneditable-input">已付款</span>
+                  {% elif order.status == 2 %}
+                  <span class="input-xlarge uneditable-input">解答中</span>
+                  {% else %}
+                  <span class="input-xlarge uneditable-input">已解决</span>
+                  {% endif %}
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">描述信息</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.description if order.description else '无' }}
+                  </span>
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">辅助信息</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.supp_info if order.supp_info else '无'}}
+                  </span>
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">日志</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.log }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">预计耗时</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">{{ order.expect_hour }}</span>
+              </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label ">实际耗时</label>
+              <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.actual_hour if order.actual_hour else '无'}}
+                  </span>
+              </div>
+              </div>
+              
+
+              <div class="control-group">
+                <label class="control-label">其他事项</label>
+                <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.extra_item if order.extra_item else '无' }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">其他金额</label>
+                <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.extra_money if order.extra_money else '无' }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">订单价格</label>
+                <div class="controls">
+                  <span class="input-xlarge uneditable-input">
+                    {{ order.order_price }}
+                  </span>
+                </div>
+              </div>
+              
+   </form>   
+{% endmacro%}
