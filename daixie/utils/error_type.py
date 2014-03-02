@@ -13,6 +13,8 @@ SEND_EMAIL_SUCCESS = u'发送邮箱成功'
 
 SEND_EMAIL_FAIL = u'发送邮箱失败'
 
+USER_IS_NOT_ACTIVATED = u'您的账号还未经过邮件认证'
+
 USER_ACTIVATE_OK = u'您已通过邮件认证，若页面没有返回，请点击返回主页进行登录'
 
 AGENT_STU_ADD_OK = u'成功提交学生身份信息'
@@ -20,6 +22,8 @@ AGENT_STU_ADD_OK = u'成功提交学生身份信息'
 USER_LOGIN_OK = u'成功登录'
 
 USER_NOT_EXIST = u'用户不存在'
+
+USER_PASSWORD_FAIL = u'密码不正确'
 
 EDIT_USER_PROFILE_OK = u'修改用户信息成功'
 

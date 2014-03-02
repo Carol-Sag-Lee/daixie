@@ -26,7 +26,7 @@ def index():
     网站首页
     '''
     if current_user.is_authenticated():
-        return redirect(url_for('user.home'))
+        return redirect(url_for('.check_is_activated', id=current_user.id))
     return render_template('general/index.html')
 
 @mod.route('/register', methods=['GET', 'POST'])
@@ -63,13 +63,14 @@ def login():
     auto = form.auto.data
 
     user = User(email, passwd)
+
     try:
         ret = UserBiz.user_login(user, auto)
     except DaixieError as e:
         fail(e)
         return render_template('general/login.html', form=form)
     success(ret)
-    return redirect(url_for('user.home'))
+    return redirect(url_for('.check_is_activated', id=user.id))
 
 @mod.route('/logout', methods=['GET','POST'])
 @login_required
@@ -94,6 +95,18 @@ def send_activate_email(id, email):
     except DaixieError as e:
         fail(e)    
     return render_template('general/wait_for_activate.html', id=id, email=email)
+
+@mod.route('/check_is_activated/<id>', methods=['GET', 'POST'])
+def check_is_activated(id):
+    try:
+        user = UserBiz.get_user_by_id(id)
+        ret = UserBiz.check_is_activated(user)
+    except DaixieError as e:
+        fail(e)
+        UserBiz.user_logout()
+        return redirect(url_for('.send_activate_email', id=user.id, email=user.email))
+    success(ret)
+    return redirect(url_for('user.home'))
 
 @mod.route('/activate/<int:id>')
 def activate(id):

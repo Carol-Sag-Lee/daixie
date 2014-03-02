@@ -7,7 +7,6 @@
 
 {% block content %}
 
-{{ flashed_msg() }}
 <div class="row">
     
     <div class="page-header">
@@ -16,6 +15,7 @@
 
     <form class="form-horizontal" id="register-form" method="post" action="{{ url_for('general.login') }}">
         {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
         <div class="form-group">
             {{ form.email.label(class="col-md-2 control-label") }}
             <div class="col-md-5">

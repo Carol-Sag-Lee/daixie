@@ -7,7 +7,7 @@ from daixie.models.user import User
 
 from daixie.utils.error_type import USER_DUPLICATE, USER_REGISTER_OK, USER_LOGOUT_OK, \
     USER_ACTIVATE_OK, USER_NOT_EXIST, USER_LOGIN_OK, USER_LOGOUT_FAIL, EDIT_USER_PROFILE_OK, \
-    EDIT_USER_PROFILE_FAIL
+    EDIT_USER_PROFILE_FAIL, USER_PASSWORD_FAIL, USER_IS_NOT_ACTIVATED
 from daixie.utils.error import DaixieError
 
 class UserBiz:
@@ -32,10 +32,19 @@ class UserBiz:
         return USER_REGISTER_OK
 
     @staticmethod
+    def check_is_activated(user):
+        u = db_session.query(User).filter_by(email=user.email).first()
+        if u.activate == User.ACTIVATE.NO:
+            raise DaixieError(USER_IS_NOT_ACTIVATED)
+        return USER_ACTIVATE_OK
+
+    @staticmethod
     def user_login(user, remember):
-        u = db_session.query(User).filter_by(email=user.email, passwd=user.passwd).first()
+        u = db_session.query(User).filter_by(email=user.email).first()
         if not u:
             raise DaixieError(USER_NOT_EXIST)
+        if u.passwd != user.passwd:
+            raise DaixieError(USER_PASSWORD_FAIL)
         user.id = u.id
         login_user(u, remember=remember)
 
