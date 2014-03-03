@@ -43,7 +43,7 @@ def profile():
 
 class ProfileForm(Form):
 	sex_choices = [('0', u'男'), ('1', u'女')]
-	email = TextField(u'登录邮箱', validators=[DataRequired(), Email()])
+	email = TextField(u'登录邮箱', validators=[DataRequired(), Email(message=u'请填写正确的邮箱地址')])
 	nickname = TextField(u'昵称',[Regexp('[\s|\S]')])
 	sex = SelectField(u'性别', choices=sex_choices, default='0')
 	description = TextAreaField(u'自我介绍',[Regexp('[\s|\S]')])

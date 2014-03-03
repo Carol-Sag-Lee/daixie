@@ -36,3 +36,9 @@ USER_LOGOUT_FAIL = u'注销失败'
 USER_ACTIVATE_TITLE = u'激活账号'
 
 FILL_USER_INFO_OK = u'成功完善个人信息'
+
+LINK_OVERDUE = u'此链接已过期,请重新注册'
+
+LINK_INVALID = u'此链接无效'
+
+DELETE_USER_OK = u'删除用户成功'

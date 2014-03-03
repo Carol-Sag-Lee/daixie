@@ -10,12 +10,12 @@ from daixie.utils.error import DaixieError
 
 class EmailBiz:
 	@staticmethod
-	def send_activate_email(id, email):
+	def send_activate_email(id, email, url, duration):
 		try:
 			to = email
 			title = USER_ACTIVATE_TITLE
 			msg = Message(title, recipients=[to])
-			msg.html = render_template('mail/register_active.html', id=str(id))
+			msg.html = render_template('mail/register_active.html', id=str(id), duration=duration, url=url)
 			mail.send(msg)
 			return SEND_EMAIL_SUCCESS
 		except:

@@ -2,7 +2,7 @@
 
 import StringIO
 
-from flask import Blueprint, url_for, redirect, render_template, Response
+from flask import Blueprint, url_for, redirect, render_template, Response, request
 from flask_wtf import Form
 from wtforms import TextField, PasswordField, BooleanField
 from wtforms.validators import Email, Regexp, EqualTo, DataRequired, Required
@@ -90,7 +90,7 @@ def send_activate_email(id, email):
     发送验证邮件
     '''
     try:
-        ret = EmailBiz.send_activate_email(id, email)
+        ret = UserBiz.send_activate_email(id, email)
         success(ret)
     except DaixieError as e:
         fail(e)    
@@ -108,14 +108,26 @@ def check_is_activated(id):
     success(ret)
     return redirect(url_for('user.home'))
 
-@mod.route('/activate/<int:id>')
-def activate(id):
+@mod.route('/activate', methods=['GET', 'POST'])
+def activate():
     '''
     激活账号
     '''
+
+    email = request.args.get('email')
+    timestamp = request.args.get('timestamp')
+    token = request.args.get('token')
+    id = request.args.get('id')
+
+    try:
+        UserBiz.check_link(email, timestamp, token)
+    except DaixieError as e:
+        return render_template('error.html', message=e.message)
+
     #以下需要根据id从数据库中取出相应的user，并更新activate字段
     user = UserBiz.get_user_by_id(id)
     ret = UserBiz.activate_user(user)
+
     url = url_for("user.home")
     success(ret)
     return render_template("general/activate_ok.html", url=url)
@@ -141,7 +153,7 @@ class LoginForm(Form):
     auto = BooleanField(u'自动登录', default=False)
 
 class RegisterForm(Form):
-    email = TextField(u'邮箱地址*', validators=[DataRequired(), Email()])
-    passwd = PasswordField(u'密码*', validators=[DataRequired(),Regexp('[\w\d-]{5,20}', message=u'5-20位')])
+    email = TextField(u'邮箱地址*', validators=[DataRequired(), Email(message=u'请填写正确的邮箱地址')])
+    passwd = PasswordField(u'密码*', validators=[DataRequired(),Regexp('[\w\d-]{6,20}', message=u'密码必须为6-20位')])
     passwd_confirm = PasswordField(u'确认密码*', validators=[DataRequired(), EqualTo('passwd', message=u'密码不一致')])
     captcha = TextField(u'输入验证码*', validators=[Required(message=u'验证码为必填'), Captcha(message=u'验证码错误')])

@@ -6,8 +6,8 @@
     <body>
         <h1>欢迎加入{{ config['SITE_NAME'] }}</h1>
         <p>{{ config['SITE_NAME'] }}是一个帮助有困难的学生完成作业的平台</p>
-        <p>请点击一下链接完成注册</p>
+        <p>请在{{ duration }}内点击此链接以完成注册</p>
         <br>
-        <a href="http://localhost:6666/activate/{{ id }}">http://localhost:6666/activate/{{ id }}</a>
+        <a href="{{ url }}">{{ url }}</a>
     </body>
 </html>

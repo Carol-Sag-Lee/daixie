@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from flask.ext.login import login_user, logout_user
+import time
+
+from flask import url_for
+
+from flask.ext.login import login_user, logout_user, make_secure_token
 
 from daixie.data.db import db_session
 from daixie.models.user import User
 
 from daixie.utils.error_type import USER_DUPLICATE, USER_REGISTER_OK, USER_LOGOUT_OK, \
     USER_ACTIVATE_OK, USER_NOT_EXIST, USER_LOGIN_OK, USER_LOGOUT_FAIL, EDIT_USER_PROFILE_OK, \
-    EDIT_USER_PROFILE_FAIL, USER_PASSWORD_FAIL, USER_IS_NOT_ACTIVATED
+    EDIT_USER_PROFILE_FAIL, USER_PASSWORD_FAIL, USER_IS_NOT_ACTIVATED, LINK_OVERDUE, \
+    LINK_INVALID, DELETE_USER_OK
+
 from daixie.utils.error import DaixieError
+from daixie.biz.email import EmailBiz
 
 class UserBiz:
     @staticmethod
@@ -30,6 +37,39 @@ class UserBiz:
         db_session.commit()
         
         return USER_REGISTER_OK
+
+    @staticmethod
+    def send_activate_email(id, email):
+        timestamp = '%d' % time.time()
+        token = make_secure_token(email, timestamp)
+        url = url_for('general.activate', id=id, email=email, timestamp=timestamp, token=token, _external=True)
+        return EmailBiz.send_activate_email(id, email, url, u'30分钟')
+
+    @staticmethod
+    def check_link(email, timestamp, token):
+        try:
+            timestamp = int(timestamp)
+        except:
+            timestamp = 0
+
+        diff = time.time() - timestamp
+        if diff > 60:
+            UserBiz.delete_unactivated_user(email)
+            raise DaixieError(LINK_OVERDUE)
+
+        if token != make_secure_token(email, str(timestamp)):
+            raise DaixieError(LINK_INVALID)
+
+        return True
+
+    @staticmethod
+    def delete_unactivated_user(email):
+        user = UserBiz.get_user_by_email(email)
+        if not user:
+            raise DaixieError(USER_NOT_EXIST)
+        db_session.delete(user)
+        db_session.commit()
+        return DELETE_USER_OK
 
     @staticmethod
     def check_is_activated(user):
