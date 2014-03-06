@@ -39,13 +39,8 @@ fieldset[disabled] .btn-orange.active {
 /*end of customization*/
 /* common */
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   padding-bottom: 20px;
-}
-/* Reset the container */
-.container {
-  max-width: none !important;
-  width: 940px;
 }
 .nav-user {
   font-size: 120%;

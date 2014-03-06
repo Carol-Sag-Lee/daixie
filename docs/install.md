@@ -57,6 +57,9 @@ ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib/
 
 ln -s /usr/lib/`uname -i`-linux-gnu/libz.so /usr/lib/
 
+#https://stripe.com
+sudo pip install --index-url https://code.stripe.com --upgrade stripe
+
 
 
 

@@ -1,0 +1,16 @@
+{% extends 'layout_n.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_xympXkYQUKF8BQZ7aF7IuKEJ"
+    data-amount="2000"
+    data-name="黄栋的内裤"
+    data-description="一盒两件内裤 ($20.00)"
+    data-image="/128x128.png">
+  </script>
+</form>
+
+{% endblock content %}

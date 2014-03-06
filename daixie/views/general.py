@@ -5,8 +5,7 @@ import StringIO
 from flask import Blueprint, url_for, redirect, render_template, Response, request
 from flask_wtf import Form
 from wtforms import TextField, PasswordField, BooleanField
-from wtforms.validators import Email, Regexp, EqualTo, DataRequired, Required
-                            
+from wtforms.validators import Email, Regexp, EqualTo, DataRequired, Required, ValidationError
 from flask.ext.login import login_required, current_user
 
 from daixie.utils.form import Captcha
@@ -27,7 +26,7 @@ def index():
     '''
     if current_user.is_authenticated():
         return redirect(url_for('.check_is_activated', id=current_user.id))
-    return render_template('general/index.html')
+    return redirect(url_for('.login'))
 
 @mod.route('/register', methods=['GET', 'POST'])
 def register():
@@ -60,7 +59,8 @@ def login():
         return render_template('general/login.html', form=form)
     email = form.email.data
     passwd = form.passwd.data
-    auto = form.auto.data
+    #auto = form.auto.data
+    auto = True
 
     user = User(email, passwd)
 
@@ -97,7 +97,7 @@ def send_activate_email(id, email):
     return render_template('general/wait_for_activate.html', id=id, email=email)
 
 @mod.route('/check_is_activated/<id>', methods=['GET', 'POST'])
-def check_is_activated(id):
+def check_is_activated(id, flash_msg=False):
     try:
         user = UserBiz.get_user_by_id(id)
         ret = UserBiz.check_is_activated(user)
@@ -105,7 +105,8 @@ def check_is_activated(id):
         fail(e)
         UserBiz.user_logout()
         return redirect(url_for('.send_activate_email', id=user.id, email=user.email))
-    success(ret)
+    if flash_msg:
+        success(ret)
     return redirect(url_for('user.home'))
 
 @mod.route('/activate', methods=['GET', 'POST'])
@@ -137,6 +138,13 @@ def activate():
 def daixie_rule():
     return render_template("general/daixie_rule.html");
 
+@mod.route('/protocal')
+def protocal():
+    '''
+    协议
+    '''
+    return render_template('general/protocal.html')
+
 @mod.route('/captcha')
 def captcha():
     '''
@@ -146,6 +154,13 @@ def captcha():
     buf = StringIO.StringIO()
     captcha_img.save(buf, 'jpeg', quality=70)
     return Response(buf.getvalue(), mimetype='image/jpg')
+
+# forms
+def BeTrue(msg):
+    def _BeTrue(form, field):
+        if not field.data:
+            raise ValidationError(msg)
+    return _BeTrue
 
 class LoginForm(Form):
     email = TextField(u'邮箱', validators=[DataRequired(), Email()])
@@ -157,3 +172,4 @@ class RegisterForm(Form):
     passwd = PasswordField(u'密码*', validators=[DataRequired(),Regexp('[\w\d-]{6,20}', message=u'密码必须为6-20位')])
     passwd_confirm = PasswordField(u'确认密码*', validators=[DataRequired(), EqualTo('passwd', message=u'密码不一致')])
     captcha = TextField(u'输入验证码*', validators=[Required(message=u'验证码为必填'), Captcha(message=u'验证码错误')])
+    agree = BooleanField(u'我已经认真阅读并同意', default=True, validators=[BeTrue(u'同意此协议才能注册')])

@@ -20,7 +20,7 @@ def home():
 	'''
 	主页
 	'''
-	return render_template('user/home.html')
+	return render_template('user/home.html', nav_home='active')
 
 @mod.route('/profile', methods=['GET', 'POST'])
 @login_required

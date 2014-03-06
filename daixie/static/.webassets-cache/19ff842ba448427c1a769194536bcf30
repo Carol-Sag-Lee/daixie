@@ -42,11 +42,6 @@ body {
   padding-top: 70px;
   padding-bottom: 20px;
 }
-/* Reset the container */
-.container {
-  max-width: none !important;
-  width: 940px;
-}
 .nav-user {
   font-size: 120%;
 }

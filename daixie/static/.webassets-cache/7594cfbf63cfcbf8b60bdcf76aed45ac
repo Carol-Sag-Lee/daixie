@@ -39,13 +39,22 @@ fieldset[disabled] .btn-orange.active {
 /*end of customization*/
 /* common */
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   padding-bottom: 20px;
 }
-/* Reset the container */
-.container {
-  max-width: none !important;
-  width: 940px;
+.navbar-brand {
+  font-size: 24px;
+  color: white !important;
+  background-color: #cc6633;
+}
+.navbar-brand:hover {
+  background-color: #cc6633 !important;
+}
+.navbar-brand .TM {
+  display: inline-block;
+  position: relative;
+  font-size: 10px;
+  top: -10px;
 }
 .nav-user {
   font-size: 120%;

@@ -30,8 +30,19 @@ def my_list():
 @mod.route('/more_info/<int:id>')
 @login_required
 def more_info(id):
+	'''
+	查看订单的详细信息
+	'''
 	order = OrderBiz.get_order_by_id(id)
 	if current_user.type == User.USER_TYPE.USER:
 		return render_template('order/more_info_for_user.html', order=order)
 	else:
 		return render_template('order/more_info_for_solver.html', order=order)
+
+@mod.route('/pay')
+@login_required
+def pay():
+	'''
+	付款测试-https://stripe.com
+	'''
+	return render_template('order/pay.html')

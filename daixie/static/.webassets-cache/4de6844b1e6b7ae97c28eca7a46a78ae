@@ -41,6 +41,7 @@ fieldset[disabled] .btn-orange.active {
 body {
   padding-top: 70px;
   padding-bottom: 20px;
+  background-color: #efeeea;
 }
 /* Reset the container */
 .container {
