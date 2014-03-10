@@ -5,7 +5,8 @@ from os.path import dirname,abspath
 DIR_CUR = dirname(abspath(__file__))
 DIR_CONFS = DIR_CUR + '/../confs'
 DIR_LOGS = DIR_CUR + '/../logs'
-DIR_RESOURCES = DIR_CUR + '/resources'
+DIR_RESOURCES = DIR_CUR + '/resources/supp_info'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'doc', 'docx', 'ppt', 'pptx','zip','rar'])
 
 #global
 PORT = 6666
