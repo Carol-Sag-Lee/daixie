@@ -1,5 +1,16 @@
 # -*- coding: utf-8 -*-
 
+SOLVER_UPDATE_OK = u"修改解题员密码成功"
+
+CS_UPDATE_OK = u"修改客服密码成功"
+
+SOLVER_ADD_OK = u"创建解题员成功"
+
+SOLVER_DELETE_OK = u"删除解题员成功"
+
+CS_ADD_OK = u'创建客服成功'
+
+CS_DELETE_OK = u'删除客服成功'
 
 USER_REGISTER_OK = u'注册成功'
 

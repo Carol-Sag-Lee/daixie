@@ -14,7 +14,6 @@ from daixie.utils.error import DaixieError, fail, success
 
 from daixie.models.user import User
 from daixie.biz.user import UserBiz
-from daixie.biz.email import EmailBiz
 
 
 mod = Blueprint('general', __name__)
@@ -36,14 +35,14 @@ def register():
     form = RegisterForm()
     if not form.validate_on_submit():
         print form.errors
-        return render_template('general/register.html', form=form, hide_login_link=True)
+        return render_template('general/register.html', form=form, nav_register='active')
     user = User(form.email.data, form.passwd.data)
 
     try:
     	ret = UserBiz.register(user)
     except DaixieError as e:
         fail(e)
-    	return render_template('general/register.html', form=form, hide_login_link=True)        
+    	return render_template('general/register.html', form=form, nav_register='active')        
     success(ret)
     #send email to user for validating
     user = UserBiz.get_user_by_email(user.email)
@@ -56,7 +55,7 @@ def login():
     '''
     form = LoginForm()
     if not form.validate_on_submit():
-        return render_template('general/login.html', form=form)
+        return render_template('general/login.html', form=form, nav_login='active')
     email = form.email.data
     passwd = form.passwd.data
     #auto = form.auto.data
@@ -68,7 +67,7 @@ def login():
         ret = UserBiz.user_login(user, auto)
     except DaixieError as e:
         fail(e)
-        return render_template('general/login.html', form=form)
+        return render_template('general/login.html', form=form, nav_login='active')
     success(ret)
     return redirect(url_for('.check_is_activated', id=user.id))
 

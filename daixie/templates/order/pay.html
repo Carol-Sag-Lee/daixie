@@ -1,17 +1,53 @@
-{% extends 'layout_n.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 
-<form action="" method="POST">
+<form id="stripe_form" action="{{ url_for('order.charge') }}" method="POST">
+  <article>
+    <label>
+      <span>《火鸡总动员》电影票的价格为$6.00</span>
+    </label>
+  </article>
+
   <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    src="https://checkout.stripe.com/v2/checkout.js"
+    class="stripe-button"
     data-key="pk_test_xympXkYQUKF8BQZ7aF7IuKEJ"
-    data-amount="2000"
-    data-name="黄栋的内裤"
-    data-description="一盒两件内裤 ($20.00)"
+    data-amount="600"
+    data-name="《火鸡总动员》电影票"
+    data-description="南京卢米埃绿地影城"
     data-image="/128x128.png"
     data-label="付款">
   </script>
 </form>
+
+
+
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
+<a id="customButton" class="btn btn-warning">Purchase</a>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_xympXkYQUKF8BQZ7aF7IuKEJ',
+    image: '/square-image.png',
+    token: function(token, args) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Demo Site',
+      description: '2 widgets ($20.00)',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+</script>
+
+
 
 {% endblock content %}

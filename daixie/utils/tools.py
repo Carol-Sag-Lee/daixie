@@ -25,10 +25,10 @@ def pretty_email(email):
 
 #测试机器
 def send_email(to,title,body):
-    fromer = 'Routh@Routh.com'
-    mail_host = 'software.nju.edu.cn'
-    mail_user = 'mf1332041@software.nju.edu.cn' 
-    mail_pass = '**********'
+    fromer = 'noreply@daixie.com'
+    mail_host = 'smtp.gmail.com'
+    mail_user = 'luo262617697@gmail.com' 
+    mail_pass = '6435042403'
     msg = MIMEText(body,_subtype='html',_charset='utf-8') 
     msg['Subject'] = title
     msg['From'] = fromer
@@ -47,7 +47,7 @@ def send_email(to,title,body):
 
 #线上机器，将2去掉，把测试机器改成2
 def send_email2(to,title,body):
-    fromer = 'xiaoma@offerduoduo.com'
+    fromer = 'noreply@daixie.com'
     mail_host = '127.0.0.1'
     #mail_user = 'xiaoma' 
     #mail_pass = ''

@@ -1,47 +1,27 @@
-jQuery(document).ready(function($) {
-    var end = new Date();
-    end.setFullYear(2014,1,31);
-    $('.datepicker').datetimepicker({
-        autoclose: true,
-        todayHighlight: 1,
-        format:'yyyy/mm/dd',
-        startDate:new Date(),
-        endDate:end,
-        daysOfWeekDisabled:[1],
-        minView:2
-    });
-});
+$(document).ready(function(){
 
-//滚动插件 
-(function($){ 
-$.fn.extend({ 
-Scroll:function(opt,callback){ 
-//参数初始化 
-if(!opt) var opt={}; 
-var _this=this.eq(0).find("ul:first"); 
-var lineH=_this.find("li:first").height(), //获取行高 
-line=opt.line?parseInt(opt.line,10):parseInt(this.height()/lineH,10), //每次滚动的行数，默认为一屏，即父容器高度 
-speed=opt.speed?parseInt(opt.speed,10):500, //卷动速度，数值越大，速度越慢（毫秒） 
-timer=opt.timer?parseInt(opt.timer,10):3000; //滚动的时间间隔（毫秒） 
-if(line==0) line=1; 
-var upHeight=0-line*lineH; 
-//滚动函数 
-scrollUp=function(){ 
-_this.animate({ 
-marginTop:upHeight 
-},speed,function(){ 
-for(i=1;i<=line;i++){ 
-_this.find("li:first").appendTo(_this); 
-} 
-_this.css({marginTop:0}); 
-}); 
-} 
-//鼠标事件绑定 
-_this.hover(function(){ 
-clearInterval(timerID); 
-},function(){ 
-timerID=setInterval("scrollUp()",timer); 
-}).mouseout(); 
-} 
-}) 
-})(jQuery); 
+    $("#floatShow").bind("click",function(){
+    
+        $("#onlineService").animate({width:"show", opacity:"show"}, "normal" ,function(){
+            $("#onlineService").show();
+        });
+        
+        $("#floatShow").attr("style","display:none");
+        $("#floatHide").attr("style","display:block");
+        
+        return false;
+    });
+    
+    $("#online_qq_tab").bind("click",function(){
+    
+        $("#onlineService").animate({width:"hide", opacity:"hide"}, "normal" ,function(){
+            $("#onlineService").hide();
+        });
+        
+        $("#floatShow").attr("style","display:block");
+        $("#floatHide").attr("style","display:none");
+        
+        return false;
+    });
+  
+});

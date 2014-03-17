@@ -1,91 +1,127 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>代写</title>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="给大学生提供代写作业的平台">
+    <meta name="keywords" content="大学 作业 美国">
+    <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <meta name="description" content="给大学生提供代写作业的平台">
-        <meta name="keywords" content="大学 作业 美国">
-        <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>代写作业</title>
 
-        {% assets "all_css" %}
-            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
-        {% endassets %}
+    {% assets "all_css" %}
+      <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
 
-        <!--[if lt IE 9]>
-        <script src="ie/js/html5shiv.js"></script>
-        <![endif]-->
-    </head>
+    <!--[if lt IE 9]>
+      <script src="ie/js/html5shiv.js"></script>
+    <![endif]-->
 
-    <body>
-        <header class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url_for('general.index') }}">{{ config['SITE_NAME'] }}<span class="TM">BETA</span></a>
-                </div>
-                <nav class="collapse navbar-collapse" role="navigation">
-                    {% if current_user.is_authenticated() %}
-                    <ul class="nav nav-user navbar-nav navbar-left">
-                        <li><a href="{{ url_for('user.home') }}">首页</a></li>
-                        <li><a href="{{ url_for('order.my_list') }}">查看订单</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                设置<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('user.profile') }}">账号信息</a></li>
-                                <li><a href="">关联账户设置</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    {% endif %}
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if not current_user.is_authenticated() %}
-                        <li><a href="{{ url_for('general.register') }}">注册</a></li>
-                        <li><a href="{{ url_for('general.login') }}">登录</a></li>
-                        {% else %}
-                        <li><a href="{{ url_for('user.home') }}">{{ current_user.nickname if current_user.nickname else current_user.email }}</a></li>
-                        <li><a href="{{ url_for('general.logout') }}">注销</a></li>
-                        {% endif %}
-                    </ul>
-                    <div class="qq-box fix-right">
-                    <br/>
-                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=262617697&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:262617697:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-                </div>
-                </nav>
-            </div>
-        </header>
+  </head>
 
-        {% block ad %}
-        {% endblock ad %}
+  <body>
 
-        {% from 'import/tools.html' import flashed_msg %}
-        <div class="container">
-            <div class="row">
-                {{ flashed_msg() }}
-            </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  href="{{ url_for('general.index') }}">{{ config['SITE_NAME'] }}</a>
         </div>
-        
-        {% block wrapper %}
-        <div class="container wrapper">
-            <div class="row">
-        {% block content %}{% endblock content %}
-            </div>
-        </div>
-        {% endblock wrapper %}
-        
-        <hr>
-        <div id="footer">
-            <div class="container">
-                <p class="navbar-text">© 2013 example.com・all rights reserved・京ICP备12026711号·文化部监督电子邮箱:wlwh@vip.sina.com</p>
-            </div>
-        </div>
+        <div class="navbar-collapse collapse">
+          {% if current_user.is_authenticated() %}
+          <ul class="nav nav-user navbar-nav">
+            <li class="{{ nav_home }}"><a href="{{ url_for('user.home') }}">首页</a></li>
+            <li class="{{ nav_order }}"><a href="{{ url_for('order.my_list') }}">查看订单</a></li>
+            <li class="dropdown {{ nav_setting }}">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    设置<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('user.profile') }}">账号信息</a></li>
+                    <li><a href="">关联账户设置</a></li>
+                </ul>
+            </li>
+          </ul>
+          {% endif %}
+          <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated()%}
+              <li><a href="{{ url_for('user.home') }}">{{ current_user.nickname if current_user.nickname else current_user.email }}</a></li>
+              <li><a href="{{ url_for('general.logout') }}">注销</a></li>
+            {% else %}
+              {% block loginform %}
+              <li class="{{ nav_login }}"><a href="{{ url_for('general.login') }}">登录</a></li>
+              <li class="{{ nav_register }}"><a href="{{ url_for('general.register') }}">注册</a></li>
+              {% endblock loginform %}
+            {% endif %}
+          </ul>
 
-        {% assets "all_js" %}
-            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-        {% endassets %}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
 
-        {% block js %}
-        {# <script> 对特定网页导入工具性js时使用 </script> #}
-        {% endblock js %}
-    </body>
+    {% block ad %}
+    {% endblock ad %}
+
+    {% from 'import/tools.html' import flashed_msg %}
+    <div class="container">
+        <div class="row">
+            {{ flashed_msg() }}
+        </div>
+    </div>
+
+    {% block wrapper %}
+    <div class="container wrapper">
+        <div class="row">
+    {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+    {% block cs_qq_list %}
+
+    {% if current_user.is_authenticated() %}
+
+    {% set cs_qq_list = current_user.cs_qq_list %}
+
+    <div id="online_qq_layer">
+      <div id="online_qq_tab">
+        <a id="floatShow" style="display:block;" href="javascript:void(0);">收缩</a> 
+        <a id="floatHide" style="display:none;" href="javascript:void(0);">展开</a>
+      </div>
+      <div id="onlineService">
+        <div class="onlineMenu">
+          <ul>
+            <li class="tli zixun">联系客服</li>
+            {% for qq in cs_qq_list['qq_list'] %}
+            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ qq }}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{{ qq }}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="btmbg"></div>
+      </div>
+    </div>
+
+    {% endif %}
+
+    {% endblock cs_qq_list %}
+
+    {% endblock wrapper %}
+
+    <hr>
+    <footer>
+      <p>&copy; 2014 daixie.com・all rights reserved・京ICP备12026711号·文化部监督电子邮箱:wlwh@vip.sina.com</p>
+    </footer>
+
+    {% assets "all_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% block js %}
+    {# <script> 对特定网页导入工具性js时使用 </script> #}
+    {% endblock js %}
+  </body>
 </html>

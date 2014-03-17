@@ -1,0 +1,60 @@
+/* Bootstrap customization */
+.btn-orange {
+  color: #ffffff;
+  background-color: #cc6633;
+  border-color: #CC6600;
+}
+.btn-orange:hover,
+.btn-orange:focus,
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  color: #ffffff;
+  background-color: #CC6600;
+  border-color: #CC6600;
+}
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  background-image: none;
+}
+.btn-orange.disabled,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange,
+.btn-orange.disabled:hover,
+.btn-orange[disabled]:hover,
+fieldset[disabled] .btn-orange:hover,
+.btn-orange.disabled:focus,
+.btn-orange[disabled]:focus,
+fieldset[disabled] .btn-orange:focus,
+.btn-orange.disabled:active,
+.btn-orange[disabled]:active,
+fieldset[disabled] .btn-orange:active,
+.btn-orange.disabled.active,
+.btn-orange[disabled].active,
+fieldset[disabled] .btn-orange.active {
+  background-color: #cc6633;
+  border-color: #CC6600;
+}
+/*end of customization*/
+/* common */
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+/* Reset the container */
+.container {
+  max-width: none !important;
+  width: 940px;
+}
+.nav-user {
+  font-size: 120%;
+}
+.wrapper {
+  min-height: 600px;
+}
+.banner {
+  display: block;
+  border-left: 5px solid #cc6633;
+  padding: 0px 10px;
+}
