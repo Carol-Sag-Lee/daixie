@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<button id="recharge">充值</button>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_xympXkYQUKF8BQZ7aF7IuKEJ',
+    image: '/square-image.png',
+    token: function(token, args) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  document.getElementById('recharge').addEventListener('click', function(e) {
+    handler.open({
+      name: '账户充值',
+      description: '2 widgets ($20.00)',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+</script>
+
+
+
+{% endblock content %}

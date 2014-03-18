@@ -41,6 +41,14 @@ def profile():
 		fail(e)
 	return redirect(url_for('.profile'))
 
+@mod.route('/recharge', methods=['GET', 'POST'])
+@login_required
+def recharge():
+	'''
+	充值
+	'''
+	return render_template('user/recharge.html', nav_recharge='active')
+
 class ProfileForm(Form):
 	sex_choices = [('0', u'男'), ('1', u'女')]
 	email = TextField(u'邮箱', validators=[DataRequired(), Email(message=u'请填写正确的邮箱地址')])

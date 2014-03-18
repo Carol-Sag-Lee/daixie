@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
     sex = db.Column('sex', db.Integer, nullable=False)
     description = db.Column('description', db.String(1000), nullable=False)
     qq = db.Column('qq', db.String(45), nullable=False)
+    account = db.Column('account', db.FLOAT, nullable=False)
 
     
     def __init__(self, email, passwd, type=USER_TYPE.USER, nickname='', qq=None):
@@ -36,6 +37,7 @@ class User(db.Model, UserMixin):
         self.sex = User.SEX.MALE
         self.description = ''
         self.qq = qq
+        self.account = 0
 
 
     def __repr__(self):

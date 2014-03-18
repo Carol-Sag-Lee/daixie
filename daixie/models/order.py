@@ -32,11 +32,13 @@ class Order(db.Model, UserMixin):
     actual_hour = db.Column('actual_hour', db.FLOAT)
     extra_item = db.Column('extra_item', db.String)
     extra_money = db.Column('extra_money', db.String)
-    order_price = db.Column('order_price', db.FLOAT)
+    expect_order_price = db.Column('expect_order_price', db.FLOAT)
+    actual_order_price = db.Column('actual_order_price', db.FLOAT)
 
     
     def __init__(self, user_id, cs_id, solver_id, require_time, expect_time, title, expect_hour, \
-             order_price, description=None, supp_info=None, extra_item=None, extra_money=None):
+             expect_order_price, actual_order_price, description=None, supp_info=None, extra_item=None, \
+             extra_money=None):
         self.user_id = user_id
         self.cs_id = cs_id
         self.solver_id = solver_id
@@ -52,7 +54,8 @@ class Order(db.Model, UserMixin):
         self.actual_hour = None
         self.extra_item = extra_item
         self.extra_money = extra_money
-        self.order_price = self.order_price
+        self.expect_order_price = expect_order_price
+        self.actual_order_price = self.actual_order_price
 
 
     def __repr__(self):
