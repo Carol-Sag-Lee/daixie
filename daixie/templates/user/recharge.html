@@ -3,31 +3,24 @@
 {% block content %}
 
 
+<form id="recharge_form" action="{{ url_for('user.recharge') }}" method="POST">
+  <article>
+    <label>
+      <span>您要充值的金额为${{ amount }}.00，点击下面的充值按钮进行充值：</span>
+    </label>
+  </article>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
-
-<button id="recharge">充值</button>
-
-<script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_xympXkYQUKF8BQZ7aF7IuKEJ',
-    image: '/square-image.png',
-    token: function(token, args) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-    }
-  });
-
-  document.getElementById('recharge').addEventListener('click', function(e) {
-    handler.open({
-      name: '账户充值',
-      description: '2 widgets ($20.00)',
-      amount: 2000
-    });
-    e.preventDefault();
-  });
-</script>
-
+  <script
+    src="https://checkout.stripe.com/v2/checkout.js"
+    class="stripe-button"
+    data-key="pk_test_xympXkYQUKF8BQZ7aF7IuKEJ"
+    data-amount="{{ data_amount }}"
+    data-name="账户充值"
+    data-description="您将要充值${{ amount }}.00到账户"
+    data-image="/128x128.png"
+    data-label="充值">
+  </script>
+</form>
 
 
 {% endblock content %}

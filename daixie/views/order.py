@@ -10,7 +10,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask.ext.login import login_required, current_user
 
 from daixie.biz.order import OrderBiz
-from daixie.utils.error import DaixieError, fail, success
+from daixie.utils.error import DaixieError, fail, success, j_err, j_ok
 from daixie.models.user import User
 
 import stripe
@@ -41,14 +41,21 @@ def more_info(id):
 	else:
 		return render_template('order/more_info_for_solver.html', order=order, nav_order='active')
 
-@mod.route('/pay')
+@mod.route('/pay', methods=['POST'])
 @login_required
-def pay():
+def j_pay():
 	'''
-	付款测试-https://stripe.com
-	转向付款表单
+	订单付款
 	'''
-	return render_template('order/pay.html', nav_order='active')
+	order_id = request.form['order_id']
+	try:
+		ret = OrderBiz.pay(order_id)
+	except DaixieError as e:
+		OrderBiz.refund(order_id)
+		j_err(e)
+
+	success(ret)
+	return redirect(url_for('user.home'))
 
 @mod.route('/charge', methods=['POST'])
 @login_required
@@ -56,6 +63,7 @@ def charge():
 	'''
 	付款测试-https://stripe.com
 	付款表单处理
+	invalid
 	'''
 
 	stripe.api_key = "sk_test_xPY1IwP3MgiPkMlaV8Q76tgt"

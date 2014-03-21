@@ -53,3 +53,11 @@ LINK_OVERDUE = u'此链接已过期,请重新注册'
 LINK_INVALID = u'此链接无效'
 
 DELETE_USER_OK = u'删除用户成功'
+
+RECHARGE_FAIL = u'账户充值失败'
+
+RECHARGE_SUCCESS = u'账户充值成功'
+
+REFUND_FAIL = u'账户退款失败'
+
+REFUND_SUCCESS = u'账户退款成功'

@@ -22,6 +22,11 @@ class AdminBiz:
         return cs
 
     @staticmethod
+    def get_cs_by_email(email):
+        cs = db_session.query(Admin).filter_by(email=email, type=Admin.ADMIN_TYPE.CS).first()
+        return cs
+
+    @staticmethod
     def cs_commit_update(cs):
         try:
             cs.passwd = md5(cs.passwd).hexdigest()

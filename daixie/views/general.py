@@ -44,9 +44,11 @@ def register():
         fail(e)
     	return render_template('general/register.html', form=form, nav_register='active')        
     success(ret)
+    return redirect(url_for('.index'))
+
     #send email to user for validating
-    user = UserBiz.get_user_by_email(user.email)
-    return redirect(url_for('.send_activate_email', id=user.id, email=user.email))
+    #user = UserBiz.get_user_by_email(user.email)
+    #return redirect(url_for('.send_activate_email', id=user.id, email=user.email))
 
 @mod.route('/login', methods=['GET','POST'])
 def login():

@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
     def __init__(self, email, passwd, type=USER_TYPE.USER, nickname='', qq=None):
         self.email = email
         self.passwd = md5(passwd).hexdigest()
-        self.activate = User.ACTIVATE.NO
+        self.activate = User.ACTIVATE.YES
         self.type = type
         self.nickname = nickname
         self.sex = User.SEX.MALE
