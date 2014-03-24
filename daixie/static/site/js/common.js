@@ -25,6 +25,7 @@ $(document).ready(function(){
     });
 
     $("#recharge").click(function(event) {
+        event.preventDefault();
         var url = $(this).attr('data-ajax-url')
         $.post(url,function(data,status){
             if (status == 'success') {
@@ -35,7 +36,8 @@ $(document).ready(function(){
         });
     });
 
-    $("#order_pay").click(function(event) {
+    $(".order_pay").click(function(event) {
+        event.preventDefault();
         var url = $(this).attr('data-ajax-url')
         var order_id = $(this).attr('order-id')
         var ret = confirm('确认要付款吗?');
@@ -53,13 +55,14 @@ $(document).ready(function(){
         } 
     });
 
-    $("#view_balance").click(function(event) {
-        var url = $(this).attr('data-ajax-url')
-        $.post(url,function(data,status){
+    $("#recharge-button").click(function(event) {
+        event.preventDefault();
+        /*var url = $(this).attr('data-ajax-url')
+        $.get(url,function(data,status){
             if (status == 'success') {
                 alert(data['msg'])
             }
-        });
+        });*/
     });
   
 });

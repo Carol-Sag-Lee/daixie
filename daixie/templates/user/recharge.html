@@ -12,6 +12,7 @@
 
   <script
     src="https://checkout.stripe.com/v2/checkout.js"
+    data-ajax-url="{{ url_for('user.recharge') }}"
     class="stripe-button"
     data-key="pk_test_xympXkYQUKF8BQZ7aF7IuKEJ"
     data-amount="{{ data_amount }}"

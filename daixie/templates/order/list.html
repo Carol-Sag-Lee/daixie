@@ -10,6 +10,8 @@
       <th>标题</th>
       <th>目前状态</th>
       <th>要求时间</th>
+      <th>订单预计价格</th>
+      <th>订单实际价格</th>
       <th>操作</th>
   </tr>
   {%for order in order_list%}
@@ -20,9 +22,11 @@
          {{ order_status(order) }}
       </td>
       <td>{{order.require_time}}</td>
+      <td>{{ order.expect_order_price if order.expect_order_price else '无' }}</td>
+      <td>{{ order.actual_order_price if order.actual_order_price else '无' }}</td>
       <td>
           {% if order.status == 0 %}
-          <a id="order_pay" order-id="{{order.id}}" class="btn btn-warning " href="#" data-ajax-url="{{ url_for('order.j_pay') }}">付款</a>
+          <a id="order_pay" order-id="{{order.id}}" class="btn btn-warning order_pay" href="#" data-ajax-url="{{ url_for('order.j_pay') }}">付款</a>
           {% endif %}
           <a class="btn btn-info" href="{{ url_for('order.more_info', id=order.id) }}">详细</a>
       </td>

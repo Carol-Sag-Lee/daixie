@@ -12,11 +12,11 @@ from daixie.models.user import User
 from daixie.utils.error_type import USER_DUPLICATE, USER_REGISTER_OK, USER_LOGOUT_OK, \
     USER_ACTIVATE_OK, USER_NOT_EXIST, USER_LOGIN_OK, USER_LOGOUT_FAIL, EDIT_USER_PROFILE_OK, \
     EDIT_USER_PROFILE_FAIL, USER_PASSWORD_FAIL, USER_IS_NOT_ACTIVATED, LINK_OVERDUE, \
-    LINK_INVALID, DELETE_USER_OK, RECHARGE_FAIL, RECHARGE_SUCCESS, REFUND_FAIL, REFUND_SUCCESS \
-    
+    LINK_INVALID, DELETE_USER_OK, RECHARGE_FAIL, RECHARGE_SUCCESS, REFUND_FAIL, REFUND_SUCCESS
 
 from daixie.utils.error import DaixieError
 from daixie.biz.email import EmailBiz
+from daixie.biz.transaction import TransactionBiz
 
 class UserBiz:
     @staticmethod
@@ -121,7 +121,7 @@ class UserBiz:
         return EDIT_USER_PROFILE_OK
 
     @staticmethod
-    def recharge(id, amount):
+    def recharge(id, amount, type, description):
         user = UserBiz.get_user_by_id(id)
         if not user:
             raise DaixieError(USER_NOT_EXIST)
@@ -131,10 +131,12 @@ class UserBiz:
             db_session.commit()
         except:
             raise DaixieError(RECHARGE_FAIL)
+        else:
+            TransactionBiz.create(id, amount, user.account, type, description)
         return RECHARGE_SUCCESS
 
     @staticmethod
-    def refund(id, amount):
+    def refund(id, amount, type, description):
         user = UserBiz.get_user_by_id(id)
         if not user:
             raise DaixieError(USER_NOT_EXIST)
@@ -142,6 +144,7 @@ class UserBiz:
             user.account -= int(amount)
             db_session.add(user)
             db_session.commit()
+            TransactionBiz.create(id, amount, user.account, type, description)
         except:
             raise DaixieError(REFUND_FAIL)
         return REFUND_SUCCESS

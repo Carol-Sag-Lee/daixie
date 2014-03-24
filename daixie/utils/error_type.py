@@ -61,3 +61,5 @@ RECHARGE_SUCCESS = u'账户充值成功'
 REFUND_FAIL = u'账户退款失败'
 
 REFUND_SUCCESS = u'账户退款成功'
+
+PAY_ORDER_SUCCESS = u'订单付款成功'

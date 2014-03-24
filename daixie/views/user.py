@@ -11,6 +11,8 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask.ext.login import login_required, current_user
 
 from daixie.biz.user import UserBiz
+from daixie.biz.transaction import TransactionBiz
+from daixie.models.transaction import Transaction
 from daixie.utils.error import DaixieError, fail, success, j_err, j_ok
 
 import stripe
@@ -52,7 +54,8 @@ def recharge():
 	'''
 	stripe.api_key = "sk_test_xPY1IwP3MgiPkMlaV8Q76tgt"
 
-	amount = session['data_amount']
+	data_amount = session['data_amount']
+	amount = session['amount']
 
 	customer = stripe.Customer.create(
 		email=current_user.email,
@@ -60,18 +63,19 @@ def recharge():
 	)
 
 	try:
-		ret = UserBiz.recharge(current_user.id, amount)
 		stripe.Charge.create(
 			customer=customer.id,
-			amount=amount,
+			amount=int(data_amount),
 			currency='usd',
-			description='账户充值'
+			description=u'账户充值'
 			)
-	except DaixieError as e:
-		fail(e)
 	except stripe.CardError as e:
-		UserBiz.refund(current_user.id, amount)
 		raise e
+	else:
+		try:
+			ret = UserBiz.recharge(current_user.id, amount, type=Transaction.TYPE.RECHARGE, description=u'用户充值')
+		except DaixieError as e:
+			raise e
 
 	success(ret)
 
@@ -97,14 +101,14 @@ def charge_amount():
 	session['data_amount'] = data_amount
 	return render_template('user/recharge.html', nav_recharge='active', amount=amount, data_amount=data_amount)
 
-@mod.route('/view_balance', methods=['POST'])
+@mod.route('/view_balance', methods=['POST', 'GET'])
 @login_required
-def j_view_balance():
+def view_balance():
 	'''
-	查看余额
+	查看交易明细
 	'''
-	msg = u'您的余额为%d' % current_user.account
-	return j_ok(msg)
+	transaction_list = TransactionBiz.get_transaction_by_user_id(current_user.id)
+	return render_template('user/transaction_details.html', transaction_list=transaction_list, account=current_user.account, nav_balance='active')
 
 
 class ProfileForm(Form):

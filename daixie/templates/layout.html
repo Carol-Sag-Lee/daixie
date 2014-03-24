@@ -39,7 +39,7 @@
             <li class="{{ nav_order }}"><a href="{{ url_for('order.my_list') }}">查看订单</a></li>
             <li class="{{ nav_profile }}"><a href="{{ url_for('user.profile') }}">账号信息</a></li>
             <li class="{{ nav_recharge }}"><a id="recharge" href="#" data-ajax-url="{{ url_for('user.charge_amount') }}">充值</a></li>
-            <li><a id="view_balance" href="#" data-ajax-url="{{ url_for('user.j_view_balance') }}">查看余额</a></li>
+            <li class="{{ nav_balance }}"><a href="{{ url_for('user.view_balance') }}">查看余额</a></li>
           </ul>
           {% endif %}
           <ul class="nav navbar-nav navbar-right">

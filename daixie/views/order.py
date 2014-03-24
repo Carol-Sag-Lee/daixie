@@ -51,11 +51,11 @@ def j_pay():
 	try:
 		ret = OrderBiz.pay(order_id)
 	except DaixieError as e:
-		OrderBiz.refund(order_id)
-		j_err(e)
+		fail(e)
+		return j_err(e)
 
 	success(ret)
-	return redirect(url_for('user.home'))
+	return j_ok(ret)
 
 @mod.route('/charge', methods=['POST'])
 @login_required

@@ -8,7 +8,7 @@
 {% block content %}
 
 <div class="page-header">
-    <h2>{{ current_user.nickname }}的个人资料</h2>
+    <h2>{{ current_user.nickname if current_user.nickname else current_user.email }}的个人资料</h2>
 </div>
 
 <form class="form-horizontal" id="profile-form" method="post" action="{{ url_for('user.profile') }}">
@@ -46,7 +46,7 @@
 
     <div class="form-group">
         <div class="col-md-5 col-md-offset-2">
-            <input class="btn btn-orange" type="submit" value="提交"/>
+            <input class="btn btn-primary" type="submit" value="提交"/>
         </div>
     </div>
 </form>

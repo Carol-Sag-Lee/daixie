@@ -44,7 +44,7 @@ def register():
         fail(e)
     	return render_template('general/register.html', form=form, nav_register='active')        
     success(ret)
-    return redirect(url_for('.index'))
+    return redirect(url_for('user.profile'))
 
     #send email to user for validating
     #user = UserBiz.get_user_by_email(user.email)
