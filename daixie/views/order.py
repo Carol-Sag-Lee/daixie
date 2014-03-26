@@ -53,5 +53,5 @@ def pay():
 def download_file(id):
     order = OrderBiz.get_order_by_id(id)
     filename = order.supp_info
-    path = app.config['DIR_RESOURCES'] +'/'+ str(id) +'/'
+    path = app.config['ADMIN_DIR_RESOURCES_INFO'] +'/'+ str(id) +'/'
     return send_from_directory(path, filename, as_attachment=True)

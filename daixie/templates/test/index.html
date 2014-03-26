@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% from 'import/tools.html' import current_price %}
+
+{% block content %}
+<div>
+    <div class="headline text-center">
+        <h1>{{ config['SITE_NAME'] }}</h1>
+        <small>大学生代写作业平台.</small>
+    </div>
+    <br>
+    <div class="center-block well share" style="width:660px;">
+        <div class="row">
+            <p class="lead text-center">目前已有 <span class="strong">100</span> 个大学生需要代写作业</p>
+            <p class="lead text-center">加入我们, 获得更多优惠 :)</p>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+    $("#scroll").Scroll({line:1,speed:300,timer:1000}); 
+</script>
+{% endblock js %}

@@ -6,6 +6,8 @@ DIR_CUR = dirname(abspath(__file__))
 DIR_CONFS = DIR_CUR + '/../confs'
 DIR_LOGS = DIR_CUR + '/../logs'
 DIR_RESOURCES = DIR_CUR + '/resources/supp_info'
+ADMIN_DIR_RESOURCES = '/../daixie-admin/resources'
+ADMIN_DIR_RESOURCES_INFO = ADMIN_DIR_RESOURCES + '/supp_info'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'doc', 'docx', 'ppt', 'pptx','zip','rar'])
 
 #global
