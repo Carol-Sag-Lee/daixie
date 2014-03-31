@@ -50,10 +50,7 @@ body {
   margin-left: 400px;
 }
 .TA-join-us {
-  color: #dd0000;
-  font-size: 30px;
-  padding-left: 30px;
-  vertical-align: middle;
+  font-style: #ff0000;
 }
 .wrapper {
   min-height: 600px;

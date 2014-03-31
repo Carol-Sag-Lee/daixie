@@ -1,0 +1,18 @@
+/* common */
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+/* Reset the container */
+.container {
+  max-width: none !important;
+  width: 940px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+.nav-user {
+  font-size: 120%;
+}
+.wrapper {
+  min-height: 600px;
+}

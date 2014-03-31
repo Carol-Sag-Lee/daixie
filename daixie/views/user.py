@@ -27,6 +27,13 @@ def home():
 	'''
 	return render_template('user/home.html', nav_home='active')
 
+@mod.route('/t_layout', methods=['GET', 'POST'])
+def layout():
+	'''
+	test_layout
+	'''
+	return render_template('test/layout.html')
+
 @mod.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():

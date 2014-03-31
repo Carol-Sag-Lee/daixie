@@ -1,0 +1,22 @@
+/* common */
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+/* Reset the navbar-layout */
+.navbar-collapse {
+  max-width: none !important;
+  width: 940px;
+  margin-left: 200px;
+  margin-right: 200px;
+  height: 90px;
+}
+.navbar-center {
+  margin: auto;
+}
+.nav-user {
+  font-size: 120%;
+}
+.wrapper {
+  min-height: 600px;
+}

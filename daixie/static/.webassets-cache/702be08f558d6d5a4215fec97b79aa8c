@@ -29,8 +29,6 @@ body {
 }
 .cs_list_img {
   width: 100%;
-  padding-top: 25px;
-  padding-bottom: 25px;
 }
 .second_text {
   margin-left: 200px;
@@ -38,22 +36,6 @@ body {
   height: auto !important;
   padding-top: 25px;
   padding-bottom: 25px;
-}
-.thumbnail_img {
-  margin-left: 100px;
-  margin-right: 100px;
-  height: auto !important;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-.TA {
-  margin-left: 400px;
-}
-.TA-join-us {
-  color: #dd0000;
-  font-size: 30px;
-  padding-left: 30px;
-  vertical-align: middle;
 }
 .wrapper {
   min-height: 600px;

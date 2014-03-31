@@ -1,17 +1,71 @@
+
+
+/* define variable */
+
+@padding: 25px;
+
+
 /* common */
 body{
-    padding-top: 70px;
     padding-bottom: 20px;
 }
 
-/* Reset the container */
-.container {
-  max-width: none !important;
-  width: 940px;
+/* define the navbar-reset */
+.reset(@margin: 200px, @height: 90px) {
+  margin-left: @margin;
+  margin-right: @margin;
+  height: @height !important;
+}
+
+.navbar {
+	max-width: none !important;
+	width: 940px;
+	.reset();
+}
+
+.navbar-collapse.collapse {
+	.reset(@margin: 0px);
+}
+
+.navbar-nav {
+	padding-top: 20px;
 }
 
 .nav-user{
     font-size: 120%;
+}
+
+.container.row {
+  .reset(@height: auto);
+}
+
+.cs_list_img {
+  width: 100%;
+  padding-top: @padding;
+  padding-bottom: @padding;
+}
+
+.second_text {
+  .reset(@height: auto);
+  padding-top: @padding;
+  padding-bottom: @padding;
+}
+
+.thumbnail_img {
+  .reset(@margin: 100px, @height: auto);
+  padding-top: @padding;
+  padding-bottom: @padding;
+}
+
+.TA {
+  margin-left: 400px;
+}
+
+.TA-join-us {
+  color: #dd0000;
+  font-size: 30px;
+  padding-left: 30px;
+  vertical-align: middle;;
 }
 
 .wrapper{

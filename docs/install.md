@@ -60,6 +60,9 @@ ln -s /usr/lib/`uname -i`-linux-gnu/libz.so /usr/lib/
 #https://stripe.com
 sudo pip install --index-url https://code.stripe.com --upgrade stripe
 
+#frameworks
+pip install Flask-Login Flask-Sqlalchemy Flask-WTF Flask-Assets Flask-Mail Flask-DebugToolbar cssmin gunicorn gevent bleach MYSQL-python pil redis juggernaut
+
 
 
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="给大学生提供代写作业的平台">
+    <meta name="keywords" content="大学 作业 美国">
+    <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>代写作业</title>
+
+    {% assets "all_css" %}
+      <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    <!--[if lt IE 9]>
+      <script src="ie/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  href="{{ url_for('general.index') }}">
+            <img src="{{ url_for('static', filename='img/人人按键.png') }}">
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <a href="#">价格</a>
+            <a href="#">Q&A</a>
+            <a href="#">登录</a>/
+            <a href="#">注册</a>
+          </ul>
+
+        </div><!--/.navbar-collapse -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+          <img src="{{ url_for('static', filename='img/第三级主题.jpg') }}" class="cs_list_img">
+        </div>
+        <div class="row">
+          <img src="{{ url_for('static', filename='img/第二级文字.png') }}" class="second_text">
+        </div>
+        <div class="row">
+          <img src="{{ url_for('static', filename='img/第三级主题.jpg') }}" class="cs_list_img">
+        </div>
+        <div class="row thumbnail_img">
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="{{ url_for('static', filename='img/原创.png') }}" class="rounded">
+              <div class="caption">
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="{{ url_for('static', filename='img/优质.png') }}" class="rounded">
+              <div class="caption">
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="{{ url_for('static', filename='img/定制.png') }}" class="rounded">
+              <div class="caption">
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="{{ url_for('static', filename='img/迅速.png') }}" class="rounded">
+              <div class="caption">
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <img src="{{ url_for('static', filename='img/TA持续招募中.png') }}" class="TA">
+          <span class="TA-join-us">|</span>
+          <span class="TA-join-us">加入我们</span>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+      </div>
+    </div>
+
+    {% assets "all_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% block js %}
+    {# <script> 对特定网页导入工具性js时使用 </script> #}
+    {% endblock js %}
+  </body>
+</html>

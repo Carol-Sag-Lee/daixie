@@ -1,6 +1,6 @@
-/* define variable */
 /* common */
 body {
+  padding-top: 70px;
   padding-bottom: 20px;
 }
 /* define the navbar-reset */
@@ -16,7 +16,7 @@ body {
   margin-right: 0px;
   height: 90px !important;
 }
-.navbar-nav {
+.navbar-nav > li {
   padding-top: 20px;
 }
 .nav-user {
@@ -28,32 +28,7 @@ body {
   height: auto !important;
 }
 .cs_list_img {
-  width: 100%;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-.second_text {
-  margin-left: 200px;
-  margin-right: 200px;
-  height: auto !important;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-.thumbnail_img {
-  margin-left: 100px;
-  margin-right: 100px;
-  height: auto !important;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-.TA {
-  margin-left: 400px;
-}
-.TA-join-us {
-  color: #dd0000;
-  font-size: 30px;
-  padding-left: 30px;
-  vertical-align: middle;
+  width: 940px;
 }
 .wrapper {
   min-height: 600px;
