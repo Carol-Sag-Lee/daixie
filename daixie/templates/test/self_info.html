@@ -23,6 +23,17 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script>
+      $('#myTab a:first').tab('show');
+      $(function () {
+        $('#myTab a:first').tab('show');//初始化显示哪个tab      
+        $('#myTab a').click(function (e) {
+          e.preventDefault();//阻止a链接的跳转行为
+          $(this).tab('show');//显示当前选中的链接及关联的content
+        })
+      }) 
+</script> 
+
 <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" media="screen" />
 <link rel="stylesheet" href="font-social/css/fontello.css" media="screen" />
 <link href="style.css" rel="stylesheet" type="text/css" />
@@ -33,36 +44,34 @@
   </head>
 
 <body>
-    <header class="top-header">
+    <div class="top-header">
           <div class="top-content">
-            <br/>
-              <ul class="nav nav-pills">
-                  <li><a href="#">Q&A</a></li>
-                  <li><a href="#">PRICE</a></li>
-                  <li><a href="#">SELF_SETTING</a></li>
-
-              <div class="navbar-right" id="exit" ><a href="#"> Exit</a></div>  
-              <div class="navbar-right" id="money_left"><a href="#">Routh |&nbsp </a></div>
-
-              </ul>
+            <div class="pull-left top-left">
+                  <span><a href="#">Q&A</a></span>
+                  &nbsp &nbsp
+                  <span><a href="#">PRICE</a></span>
+                   &nbsp &nbsp                 
+                  <span><a href="#">SELF_SETTING</a></span>
+            </div>
+            <div class="pull-right top-right" id="money_left"><a href="#">Routh </a>  |  <a href="#">EXIT </a> </div>
           </div>
-
-    </header>
+    </div>
     <br/>
     <div class="main-content">
-        <div id="menus" class="row">
-            <ul class="nav nav-tabs span6">
+        <div id="menus" class="">
+            <ul class="nav nav-tabs span6" id="myTab">
               <li class="active">
-                 <a href="#">MY ORDER</a>
+                 <a href="#main">MY ORDER</a>
               </li>
-              <li><a href="#">MY ACCOUNT</a></li>
+              <li><a href="#account">MY ACCOUNT</a></li>
               <button class="btn btn-large btn-primary pull-right" type="button">INPUT MONEY</button>
 
             </ul>
         </div>
      <br/>
      <br/>
-        <div id="main">
+       <div class="tab-content" id="tabcontent"> 
+        <div id="main" class="tab-pane active ">
           <table class="table table-bordered">
             <tr>
               <th>ORDER No.</th>
@@ -79,6 +88,15 @@
               <th><button class="btn btn-primary" type="button">more info</button></th>
             </tr>
             <tr>
+               <th>9</th>
+               <th>NANO</th>
+              <th>SOLVED</th>
+              <th>2014.03.07</th>
+              <th><button class="btn btn-primary" type="button">more info</button></th>
+            </tr>
+           
+            
+           <tr>
             <th>8</th>
             <th>NANO2</th>
             <th>SOLVING</th>
@@ -87,24 +105,30 @@
            </tr>
          </table>
         </div>
+
+        <div id="account" class="tab-pane fade">
+          meiyouqian
+        </div>
+      </div>
     </div>
 
 
    <footer class="footer">
     <div class="foot-content">
-    <div id="us-info" class="row">
-        <p><a href="#">about us</a>  | <a href="#">join us</a> | <a href="#">contact us</a></p>
-    
-    <div id="social_media_wrapper" class="pull-right">
-      <a href="#email"><span class="glyphicon glyphicon-envelope"></span></a> 
-      <a href="#weibo" ><span class="icon icon-social-weibo"></span></a> 
-      <a href="#renren"><i class="icon icon-social-renren"></i></a>  
+      <div class="top-part">
+      <div class="about">
+        <a href="#">about us</a>  | <a href="#">join us</a> | <a href="#">contact us</a>
+      </div>
+      <div id="social_media_wrapper">
+      <a href="#email"><a class="glyphicon glyphicon-envelope"></a></a> 
+      <a href="#weibo" ><img class="img-circle" src="img/weibo.png" /></a> 
+      <a href="#renren"><img class="img-circle" src="img/renren.png" /></a>  
+      </div>
     </div>
-    </div>
-    <div class="pull-right" style="margin-bottom: 0px">
-        <p><a href="#">private policy</a>  | <a href="#">use terms</a> | &copy;Tabang .Inc 2014</p>
-    </div>
-    </div>
+      <div class="policy">
+        <a href="#">private policy</a>  | <a href="#">use terms</a> | &copy;Tabang .Inc 2014
+      </div>   
+    </div> 
    </footer>
 
     

@@ -1,54 +1,76 @@
-
 .top-header {
-position:relative;
+background-image: url(img/toolbar.png); 
+background-repeat: repeat-x;
 border-color:#3c5a98;
 font-weight:bold;
 color:#fff;
-background:#3c5a98;
 -moz-box-shadow:0 0 4px rgba(0,0,0,0.4);
 -webkit-box-shadow:0 0 4px rgba(0,0,0,0.4);
 box-shadow:0 0 4px rgba(0,0,0,0.4);
 height: 90px;
-vertical-align:middle;  
+min-width: 1200px;
 }
 
 .top-content {
-position:relative;
 font-weight:bold;
 color:#fff;
-height: 90px;
 margin-left: 200px;
 margin-right: 200px;
+min-width: 600px;
 }
-.top-content ul a{
+.top-left{
+	margin-top: 35px;
+}
+.top-right{
+	margin-top: 35px;
+}
+.top-content span a{
+	color: #fff;
+}
+
+.top-content div a{
 	color: #fff;
 }
 .main-content {
-position:relative;
 font-weight:bold;
 color:#3c5a98;
 margin-left: 200px;
 margin-right: 200px;
+min-width: 700px;
 }
-
+#main{
+	background-image: url(img/tabangbackground20.png); 
+	background-repeat: no-repeat;
+	min-height: 450px;
+}
 .foot-content {
-position:relative;
 font-weight:bold;
 color:#fff;
 height: 90px;
 margin-left: 200px;
 margin-right: 200px;
+min-width: 700px;
 }
-.foot-content div p a{
+.foot-content div  a{
 		color: #fff;
 }
-
+.about {
+	float: left;
+	margin-left: 0px;
+	margin-top: 10px;
+}
+.policy{
+	float: right;
+}
+.top-part{
+	height: 70px;
+}
 #social_media_wrapper{
-	position: relative;
-	right: 0px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 0px;
 }
 .footer {
-position:absolute;
 font-weight:bold;
 color:#fff;
 background:gray;
@@ -59,4 +81,13 @@ height: 90px;
 right:0px;
 bottom: 0px;
 width: 100%;
+min-width: 1200px;
+}
+
+.form-horizontal{
+	margin-right: 200px;
+	margin-left: 200px;
+}
+#tabcontent{
+	min-height: 450px;
 }
