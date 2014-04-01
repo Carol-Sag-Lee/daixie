@@ -30,15 +30,16 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand"  href="{{ url_for('general.index') }}">
-            <img src="{{ url_for('static', filename='img/人人按键.png') }}">
+            <img src="{{ url_for('static', filename='img/logo.png') }}">
           </a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <a href="#">价格</a>
-            <a href="#">Q&A</a>
-            <a href="#">登录</a>/
-            <a href="#">注册</a>
+          <ul class="nav navbar-nav navbar-right nav-div">
+            <div class="nav-price"><a href="#">价格</a></div>
+            <div class="nav-QA"><a href="#">Q&A</a></div>
+            <div class="blue-btn">
+              <a href="#">登录</a>/<a href="#">注册</a>
+            </div>
           </ul>
 
         </div><!--/.navbar-collapse -->
@@ -46,13 +47,19 @@
 
     <div class="container">
         <div class="row">
-          <img src="{{ url_for('static', filename='img/第三级主题.jpg') }}" class="cs_list_img">
+          <img src="{{ url_for('static', filename='img/top.jpg') }}" class="cs_list_img">
+        </div>
+        <div class="row">
+          <a href="#" class="red-btn"><img src="{{ url_for('static', filename='img/red-btn.png') }}" ></a>
         </div>
         <div class="row">
           <img src="{{ url_for('static', filename='img/第二级文字.png') }}" class="second_text">
         </div>
         <div class="row">
-          <img src="{{ url_for('static', filename='img/第三级主题.jpg') }}" class="cs_list_img">
+          <img src="{{ url_for('static', filename='img/blue.jpg') }}" class="cs_list_img">
+        </div>
+        <div class="row">
+          <a href="#" class="red-btn"><img src="{{ url_for('static', filename='img/red-btn.png') }}" ></a>
         </div>
         <div class="row thumbnail_img">
           <div class="col-sm-6 col-md-3">

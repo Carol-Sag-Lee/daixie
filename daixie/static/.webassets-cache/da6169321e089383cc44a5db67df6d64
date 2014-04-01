@@ -58,23 +58,12 @@ body {
 .red-btn {
   position: absolute;
   margin-top: -150px;
-  margin-left: 35%;
-}
-.nav-div {
-  margin-top: 20px;
+  margin-left: 50%;
 }
 .nav-price,
 .nav-QA,
 .blue-btn {
-  color: #ffffff;
-  border-color: #357ebd;
   display: inline-block;
-  padding: 6px 12px;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 4px 4px;
 }
 .wrapper {
   min-height: 600px;

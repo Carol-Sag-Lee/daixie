@@ -68,6 +68,41 @@ body{
   vertical-align: middle;;
 }
 
+.red-btn {
+  position: absolute;
+  margin-top: -150px;
+  margin-left: 35%;
+}
+
+.nav-right() {
+  color: rgb(255, 255, 255);
+  border-color: rgb(53, 126, 189);
+  //background-color: rgb(66, 139, 202);
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 4px 4px; 
+}
+
+.nav-div {
+  margin-top: 20px;
+}
+
+.a-reset(@color: #000) {
+  &,
+  &:hover,
+  &:focus {
+    color: @color !important;
+  }
+}
+
+.nav-price, .nav-QA, .blue-btn {
+  .nav-right();
+}
+
 .wrapper{
   min-height: 600px;
 }

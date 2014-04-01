@@ -63,6 +63,12 @@ body {
 .nav-div {
   margin-top: 20px;
 }
+.nav-div > a {
+  color: #000;
+}
+.nav-div > a:hover {
+  color: #000;
+}
 .nav-price,
 .nav-QA,
 .blue-btn {

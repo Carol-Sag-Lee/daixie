@@ -60,9 +60,6 @@ body {
   margin-top: -150px;
   margin-left: 35%;
 }
-.nav-div {
-  margin-top: 20px;
-}
 .nav-price,
 .nav-QA,
 .blue-btn {

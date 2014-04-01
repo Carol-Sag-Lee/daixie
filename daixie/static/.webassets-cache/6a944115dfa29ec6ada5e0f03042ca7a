@@ -60,14 +60,12 @@ body {
   margin-top: -150px;
   margin-left: 35%;
 }
-.nav-div {
-  margin-top: 20px;
-}
 .nav-price,
 .nav-QA,
 .blue-btn {
   color: #ffffff;
   border-color: #357ebd;
+  background-color: #428bca;
   display: inline-block;
   padding: 6px 12px;
   font-size: 14px;

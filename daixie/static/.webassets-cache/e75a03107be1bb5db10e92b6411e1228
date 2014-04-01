@@ -63,6 +63,9 @@ body {
 .nav-div {
   margin-top: 20px;
 }
+.nav-div > a {
+  color: #ffffff;
+}
 .nav-price,
 .nav-QA,
 .blue-btn {
