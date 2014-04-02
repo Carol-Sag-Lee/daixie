@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, url_for, redirect, render_template, request, abort
+from flask import Blueprint, url_for, redirect, render_template, request, abort,send_from_directory
 
 from flask_wtf import Form
 from wtforms import TextField, PasswordField, SelectField, BooleanField, TextAreaField
@@ -8,10 +8,11 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 from flask.ext.login import login_required, current_user
-
+from daixie import app
 from daixie.biz.order import OrderBiz
 from daixie.utils.error import DaixieError, fail, success, j_err, j_ok
 from daixie.models.user import User
+from daixie.views import j_login_required
 
 import stripe
 
@@ -83,3 +84,11 @@ def charge():
 	)
 
 	return render_template('order/charge.html', amount=amount, nav_order='active')
+
+@mod.route('/download/<int:id>', methods=['POST', 'GET'])
+@j_login_required
+def download_file(id):
+    order = OrderBiz.get_order_by_id(id)
+    filename = order.supp_info
+    path = app.config['ADMIN_DIR_RESOURCES_INFO'] +'/'+ str(id) +'/'
+    return send_from_directory(path, filename, as_attachment=True)

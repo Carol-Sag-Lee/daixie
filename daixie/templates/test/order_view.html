@@ -1,16 +1,48 @@
-{% from 'import/tools.html' import order_status %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="给大学生提供代写作业的平台">
+    <meta name="keywords" content="大学 作业 美国">
+    <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+    <title>代写作业</title>
 
-{% macro more_info_form_for_user(order) %}
+    
+    {% assets "all_css" %}
+      <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
 
- <form class="form-horizontal ">
+    <!--[if lt IE 9]>
+      <script src="ie/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+<body>
+    <div class="top-header">
+          <div class="top-content">
+            <div class="pull-left top-left">
+                  <span><a href="#">Q&A</a></span>
+                  &nbsp &nbsp
+                  <span><a href="#">PRICE</a></span>
+                   &nbsp &nbsp                 
+                  <span><a href="#">SELF_SETTING</a></span>
+            </div>
+            <div class="pull-right top-right" id="money_left"><a href="#">Routh </a>  |  <a href="#">EXIT </a> </div>
+          </div>
+    </div>
+    <br/>
+   
+   <form class="form-horizontal ">
     <table class="table table-bordered">
       <tr>
         <td  colspan="3">
            <div class="control-group">
               <label class="control-label ">订单号</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.id }}</span>
+                  <span class="input-xlarge uneditable-input"> order.id </span>
               </div>
               </div>
         </td>
@@ -19,7 +51,7 @@
            <div class="control-group">
               <label class="control-label ">user</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.user_id }}</span>
+                  <span class="input-xlarge uneditable-input">order.user_id </span>
               </div>
               </div>
         </td>
@@ -28,7 +60,7 @@
            <div class="control-group">
               <label class="control-label ">cs_id</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.cs_id }}</span>
+                  <span class="input-xlarge uneditable-input"> order.cs_id </span>
               </div>
               </div>
         </td>
@@ -36,7 +68,7 @@
            <div class="control-group">
               <label class="control-label ">solver_id</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.solver_id }}</span>
+                  <span class="input-xlarge uneditable-input">order.solver_id </span>
               </div>
               </div>
 
@@ -49,7 +81,7 @@
            <div class="control-group">
               <label class="control-label ">create time</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{order.create_time }}</span>
+                  <span class="input-xlarge uneditable-input">order.create_time</span>
               </div>
               </div>
         </td>
@@ -57,15 +89,8 @@
           <div class="control-group">
               <label class="control-label">订单状态</label>
               <div class="controls">
-                  {% if order.status == 0 %}
                   <span class="input-xlarge uneditable-input">已创建</span>
-                  {% elif order.status == 1 %}
-                  <span class="input-xlarge uneditable-input">已付款</span>
-                  {% elif order.status == 2 %}
-                  <span class="input-xlarge uneditable-input">解答中</span>
-                  {% else %}
-                  <span class="input-xlarge uneditable-input">已解决</span>
-                  {% endif %}
+                 
               </div>
               </div>
         </td>
@@ -78,7 +103,7 @@
            <div class="control-group">
               <label class="control-label ">require time</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.require_time }}</span>
+                  <span class="input-xlarge uneditable-input">order.require_time </span>
               </div>
               </div>
         </td>
@@ -86,7 +111,7 @@
            <div class="control-group">
               <label class="control-label">预计时间</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.expect_time }}</span>
+                  <span class="input-xlarge uneditable-input">order.expect_time</span>
               </div>
               </div>
         </td>     
@@ -98,7 +123,7 @@
               <div class="control-group">
               <label class="control-label ">标题</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.title }}</span>
+                  <span class="input-xlarge uneditable-input">this is title</span>
               </div>
               </div>
         </td>
@@ -111,7 +136,7 @@
                 <label class="control-label ">描述信息</label>
               <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.description if order.description else '无' }}
+                   description if order.description 
                   </span>
               </div>
               </div>
@@ -125,11 +150,7 @@
                 <label class="control-label ">辅助信息</label>
               <div class="controls">
                   <span class="input-xlarge uneditable-input">
-<<<<<<< HEAD
-                    <a href="#">{{order.supp_info if order.supp_info else '无'}}</a>
-=======
-                  <a href="{{url_for('order.download_file',id=order.id)}}">{{order.supp_info if order.supp_info else '无'}}</a>
->>>>>>> 526ee5b25451439727a2efcdb72769559537d15b
+                  <a href="#">readme.txt</a>
                   </span>
               </div>
               </div>
@@ -142,7 +163,7 @@
            <div class="control-group">
                 <label class="control-label ">预计耗时</label>
               <div class="controls">
-                  <span class="input-xlarge uneditable-input">{{ order.expect_hour }}</span>
+                  <span class="input-xlarge uneditable-input"> order.expect_hour</span>
               </div>
               </div>
         </td>
@@ -155,7 +176,7 @@
                 <label class="control-label ">实际耗时</label>
               <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.actual_hour if order.actual_hour else '无'}}
+                    54h
                   </span>
               </div>
               </div>
@@ -170,7 +191,7 @@
                 <label class="control-label">grade</label>
                 <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.grade }} meiyou a a a 
+                   hard
                   </span>
                 </div>
               </div>
@@ -184,52 +205,73 @@
                 <label class="control-label">extra_item</label>
                 <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.extra_item if order.extra_item else '无' }}
+                    40h
                   </span>
                 </div>
               </div>
         </td>
       </tr> 
 
-<<<<<<< HEAD
-              <div class="control-group">
-                <label class="control-label">预计订单价格</label>
-=======
 
       <tr>
        <td colspan="12">
            <div class="control-group">
                 <label class="control-label">其他金额</label>
->>>>>>> 526ee5b25451439727a2efcdb72769559537d15b
                 <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.expect_order_price if order.expect_order_price else '无' }}
+                    2222
                   </span>
                 </div>
               </div>
         </td>
       </tr>  
 
-<<<<<<< HEAD
-              <div class="control-group">
-                <label class="control-label">实际订单价格</label>
-=======
     <tr>
        <td colspan="12">
             <div class="control-group">
                 <label class="control-label">订单价格</label>
->>>>>>> 526ee5b25451439727a2efcdb72769559537d15b
                 <div class="controls">
                   <span class="input-xlarge uneditable-input">
-                    {{ order.actual_order_price if order.actual_order_price else '无' }}
+                    223
                   </span>
                 </div>
               </div>
         </td>
       </tr>  
 
-      </table>        
+      </table>    
+
+      <button class="btn-lg btn-info pull-right"> ok</button>    
    </form>   
-              
-   </form>   
-{% endmacro%}
+    <br/>
+    <br/>
+    <br/>
+
+
+   <footer class="footer">
+    <div class="foot-content">
+      <div class="top-part">
+      <div class="about">
+        <a href="#">about us</a>  | <a href="#">join us</a> | <a href="#">contact us</a>
+      </div>
+      <div id="social_media_wrapper">
+      <a href="#weibo" ><img class="img-circle" src="{{ url_for('static', filename='img/weibo.png') }}" /></a> 
+      <a href="#renren"><img class="img-circle" src="{{ url_for('static', filename='img/renren.png') }}" /></a>  
+      </div>
+    </div>
+      <div class="policy">
+        <a href="#">private policy</a>  | <a href="#">use terms</a> | &copy;Tabang .Inc 2014
+      </div>   
+    </div> 
+   </footer>
+
+    {% assets "all_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% block js %}
+    {# <script> 对特定网页导入工具性js时使用 </script> #}
+    {% endblock js %}
+
+</body>
+</html>

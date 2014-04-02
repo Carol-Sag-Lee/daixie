@@ -34,6 +34,20 @@ def layout():
 	'''
 	return render_template('test/layout.html')
 
+@mod.route('/t_order_view', methods=['GET', 'POST'])
+def order_view():
+	'''
+	test_order_view
+	'''
+	return render_template('test/order_view.html')
+
+@mod.route('/t_self_info', methods=['GET', 'POST'])
+def self_info():
+	'''
+	test_self_info
+	'''
+	return render_template('test/self_info.html')
+
 @mod.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():

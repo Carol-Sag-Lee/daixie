@@ -9,8 +9,8 @@ app.config.from_object('config')
 
 
 try:
-    app.config.from_pyfile(app.config['DIR_CONFS'] + '/config.py', silent=False)
-    print '[SUCCESS] load config file: ' + app.config['DIR_CONFS'] + '/config.py'
+    app.config.from_pyfile(app.config['DIR_CONFS'] + '/website_config.py', silent=False)
+    print '[SUCCESS] load config file: ' + app.config['DIR_CONFS'] + '/website_config.py'
 except Exception, e:
     pass
 
@@ -32,8 +32,8 @@ mail = Mail(app)
 from flask.ext.assets import Environment, Bundle
 assets = Environment(app)
 less = Bundle('site/css/common.less', filters='less,cssmin', output='gen/less.css')
-all_css = Bundle('bootstrap/css/bootstrap.min.css', 'datepicker/datetimepicker.min.css', 'site/css/online.css', 'site/css/style.css', less, filters='cssmin', output='gen/packed.css')
-all_js = Bundle('jQuery/jquery-1.10.2.min.js','bootstrap/js/bootstrap.min.js', 'datepicker/datetimepicker.min.js', 'site/js/common.js', 'stripe/checkout.js',filters='jspacker', output='gen/packed.js')
+all_css = Bundle('bootstrap/css/bootstrap.min.css', 'datepicker/datetimepicker.min.css', less, filters='cssmin', output='gen/packed.css')
+all_js = Bundle('jQuery/jquery-1.10.2.min.js','bootstrap/js/bootstrap.min.js', 'datepicker/datetimepicker.min.js', 'site/js/common.js',filters='jspacker', output='gen/packed.js')
 
 assets.register('all_css', all_css)
 assets.register('all_js', all_js)
@@ -75,9 +75,7 @@ def catch_error(error):
 from daixie.views import general
 from daixie.views import user
 from daixie.views import order
-from daixie.views import admin
 
 app.register_blueprint(general.mod)
 app.register_blueprint(user.mod)
 app.register_blueprint(order.mod)
-app.register_blueprint(admin.mod)

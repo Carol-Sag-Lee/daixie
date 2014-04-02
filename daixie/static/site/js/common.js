@@ -55,14 +55,11 @@ $(document).ready(function(){
         } 
     });
 
-    $("#recharge-button").click(function(event) {
-        event.preventDefault();
-        /*var url = $(this).attr('data-ajax-url')
-        $.get(url,function(data,status){
-            if (status == 'success') {
-                alert(data['msg'])
-            }
-        });*/
-    });
+    //初始化显示哪个tab
+    $('#myTab a:first').tab('show');      
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');//显示当前选中的链接及关联的content
+        });
   
 });

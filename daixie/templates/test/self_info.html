@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="给大学生提供代写作业的平台">
+    <meta name="keywords" content="大学 作业 美国">
+    <meta charset="utf-8"  http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>代写作业</title>
+
+    {% assets "all_css" %}
+      <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+<script>
+      
+</script> 
+
+<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" media="screen" />
+<link rel="stylesheet" href="font-social/css/fontello.css" media="screen" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+      <script src="ie/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+<body>
+    <div class="top-header">
+          <div class="top-content">
+            <div class="pull-left top-left">
+                  <span><a href="#">Q&A</a></span>
+                  &nbsp &nbsp
+                  <span><a href="#">PRICE</a></span>
+                   &nbsp &nbsp                 
+                  <span><a href="#">SELF_SETTING</a></span>
+            </div>
+            <div class="pull-right top-right" id="money_left"><a href="#">Routh </a>  |  <a href="#">EXIT </a> </div>
+          </div>
+    </div>
+    <br/>
+    <div class="main-content">
+        <div id="menus" class="">
+            <ul class="nav nav-tabs span6" id="myTab">
+              <li class="active">
+                 <a href="#main">MY ORDER</a>
+              </li>
+              <li><a href="#account">MY ACCOUNT</a></li>
+              <button class="btn btn-large btn-primary pull-right" type="button">INPUT MONEY</button>
+
+            </ul>
+        </div>
+     <br/>
+     <br/>
+       <div class="tab-content" id="tabcontent"> 
+        <div id="main" class="tab-pane active ">
+          <table class="table table-bordered">
+            <tr>
+              <th>ORDER No.</th>
+              <th>TITLE</th>
+              <th>STATUS</th>
+              <th>DUE DATE</th>
+              <th>MORE INFO</th>
+            </tr>
+           <tr>
+               <th>7</th>
+               <th>NANO</th>
+              <th>SOLVED</th>
+              <th>2014.03.07</th>
+              <th><button class="btn btn-primary" type="button">more info</button></th>
+            </tr>
+            <tr>
+               <th>9</th>
+               <th>NANO</th>
+              <th>SOLVED</th>
+              <th>2014.03.07</th>
+              <th><button class="btn btn-primary" type="button">more info</button></th>
+            </tr>
+           
+            
+           <tr>
+            <th>8</th>
+            <th>NANO2</th>
+            <th>SOLVING</th>
+            <th>2014.05.09</th>
+             <th><button class="btn btn-primary" type="button">more info</button></th>
+           </tr>
+         </table>
+        </div>
+
+        <div id="account" class="tab-pane fade">
+          meiyouqian
+        </div>
+      </div>
+    </div>
+
+
+   <footer class="footer">
+    <div class="foot-content">
+      <div class="top-part">
+      <div class="about">
+        <a href="#">about us</a>  | <a href="#">join us</a> | <a href="#">contact us</a>
+      </div>
+      <div id="social_media_wrapper">
+      <a href="#weibo" ><img class="img-circle" src="{{ url_for('static', filename='img/weibo.png') }}" /></a> 
+      <a href="#renren"><img class="img-circle" src="{{ url_for('static', filename='img/renren.png') }}" /></a>  
+      </div>
+    </div>
+      <div class="policy">
+        <a href="#">private policy</a>  | <a href="#">use terms</a> | &copy;Tabang .Inc 2014
+      </div>   
+    </div> 
+   </footer>
+
+    {% assets "all_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% block js %}
+    {# <script> 对特定网页导入工具性js时使用 </script> #}
+    {% endblock js %}
+
+</body>
+</html>

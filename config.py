@@ -5,9 +5,9 @@ from os.path import dirname,abspath
 DIR_CUR = dirname(abspath(__file__))
 DIR_CONFS = DIR_CUR + '/../confs'
 DIR_LOGS = DIR_CUR + '/../logs'
-DIR_RESOURCES = DIR_CUR + '/resources'
-ADMIN_RESOURCES = DIR_CUR + '../admin/daixie-admin'
-DIR_SUPP_INFO = ADMIN_RESOURCES + '/supp_info'
+DIR_RESOURCES = DIR_CUR + '/resources/supp_info'
+ADMIN_DIR_RESOURCES = '/../../admin/daixie-admin/resources'
+ADMIN_DIR_RESOURCES_INFO = ADMIN_DIR_RESOURCES + '/supp_info'
 
 #global
 PORT = 6666
